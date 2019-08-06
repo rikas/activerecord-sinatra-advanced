@@ -1,0 +1,13 @@
+<h1>Sinatra Restaurants</h1>
+<h2>My list of restaurants</h2>
+
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <a href="/details/<%= restaurant.id %>">
+        <%= restaurant.name %> — <%= restaurant.city %>
+      </a>
+      <span><%= restaurant.votes %></span>
+    </li>
+  <% end %>
+</ul>
