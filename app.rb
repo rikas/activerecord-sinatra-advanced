@@ -5,6 +5,7 @@ require 'sinatra/activerecord'
 
 get '/' do
   @restaurants = Restaurant.all
+  @cities = City.by_name
 
   # render the view under views/index.erb
   erb :index
@@ -29,3 +30,18 @@ get '/upvote/:id' do
 
   erb :details
 end
+
+post '/create_restaurant' do
+  name = params[:name]
+
+  city = City.find(params[:city_id])
+
+  restaurant = Restaurant.new(name: name)
+  restaurant.city = city
+  restaurant.save
+
+  # Restaurant.create(name: name, city: city)
+
+  redirect '/'
+end
+
